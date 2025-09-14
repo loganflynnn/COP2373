@@ -11,7 +11,7 @@ def prompt_ticket_request(remaining: int) -> int | None:
     """
     limit = min(MAX_PER_BUYER, remaining)
     while True:
-        raw = input(f"How many tickets would you like (1–{limit})? "
+        raw = input(f"Enter the amount of tickets you want to purchase (1–{limit})? "
                     f"Press Enter to skip: ").strip()
 
         if raw == "":
