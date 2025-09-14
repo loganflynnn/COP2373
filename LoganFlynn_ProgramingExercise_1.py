@@ -21,30 +21,30 @@ def prompt_ticket_request(remaining: int) -> int | None:
             print("Please enter a whole number.")
             continue
 
-        qty = int(raw)
-        if qty < 1:
+        tickets_bought = int(raw)
+        if tickets_bought < 1:
             print("Please enter a positive number.")
             continue
-        if qty > MAX_PER_BUYER:
+        if tickets_bought > MAX_PER_BUYER:
             print(f"You can buy at most {MAX_PER_BUYER} tickets per buyer.")
             continue
-        if qty > remaining:
+        if tickets_bought > remaining:
             print(f"Only {remaining} ticket(s) remain. Enter {remaining} or less.")
             continue
 
-        return qty
+        return tickets_bought
 
 
-def process_purchase(remaining: int, qty: int | None) -> tuple[int, bool]:
+def process_purchase(remaining: int, tickets_bought: int | None) -> tuple[int, bool]:
     """
-    Process a purchase of qty tickets (or skip if qty is None).
+    Process a purchase of tickets_bought tickets (or skip if tickets_bought is None).
     Returns (new_remaining, purchased_flag).
     """
-    if qty is None:
+    if tickets_bought is None:
         return remaining, False
 
-    new_remaining = remaining - qty
-    print(f"Purchase successful. You bought {qty} ticket(s). "
+    new_remaining = remaining - tickets_bought
+    print(f"Purchase successful. You bought {tickets_bought} ticket(s). "
           f"{new_remaining} ticket(s) remain.\n")
     return new_remaining, True
 
@@ -59,8 +59,8 @@ def main() -> None:
 
     # Keep offering until sold out or user skips twice in a row if they want
     while remaining > 0:
-        qty = prompt_ticket_request(remaining)
-        new_remaining, purchased = process_purchase(remaining, qty)
+        tickets_bought = prompt_ticket_request(remaining)
+        new_remaining, purchased = process_purchase(remaining, tickets_bought)
 
         if purchased:
             total_buyers += 1
