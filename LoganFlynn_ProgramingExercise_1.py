@@ -1,7 +1,7 @@
 # Cinema Tickets
 # Logan Flynn
 # 08/31/25
-MAX_TICKETS = 20
+MAX_TICKETS = 10
 MAX_PER_BUYER = 4
 
 def prompt_ticket_request(remaining: int) -> int | None:
